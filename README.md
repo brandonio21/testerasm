@@ -10,7 +10,7 @@ in your home directory.
   chmod +x tester
   ````
 
-2. Add and path to this script to your profile.
+2. Add a path to this script to your profile.
   ````bash
   'export PATH=$PATH:/home/linux/ieng6/cs12x/cs12xxx/scripts' >> ~/.bashrc
   ````
