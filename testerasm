@@ -1,0 +1,73 @@
+#!/bin/bash
+hw=${PWD##*/}
+
+writeusage () {
+    echo
+    echo "tester - UCSD CSE12"
+    echo "Makes and tests your program simultaneously with the sample program."
+    echo "The differences in stdout/stderr are shown in a vimdiff."
+    echo
+    echo "Usage: tester [program] [test input | --no-input] [args (optional)]"
+    echo
+    echo "Be sure to run this in a \"hw#\" directory."
+    echo
+}
+
+# Ask user if they would like to remove existing *.datafiles
+echo 
+echo "Would you like to run your test with fresh .datafiles? [y/n] "
+read rmdatafiles
+
+# If the user doesn't know how to use this
+if [[ "$#" < 2 ]]; then
+    writeusage
+    exit 1
+fi
+
+  
+# First arg is the driver
+driver="$1"
+my_prog="./$driver"
+sample_prog="../public/$hw/$driver"
+shift
+
+# Second arg is the input (or lack thereof)
+if [[ "$1" != "--no-input" ]]; then
+    src="cat $PWD/$1"
+fi
+shift
+
+# The rest of the arguments are passed to the driver
+while [[ "$#" > 0 ]]; do
+    args="$args $1"
+    shift
+done
+
+# Make your file
+make new
+
+# Create output file taking in stderr & stdout
+$src|$my_prog$args &> mine
+
+# Remove and recreates apropriate files
+cd ..
+if [ "${rmdatafiles,,}" != "n" ]; then
+    if [ "$driver" == "Driver" ]; then
+        rm -f Driver.datafile
+        touch Driver.datafile
+    elif [ "$driver" == "Calc" ]; then
+        rm -f Calc.datafile
+        touch Calc.datafile
+    else
+        writeusage
+        exit 1
+    fi
+fi
+
+# Save solution output
+$src|$sample_prog$args &> $hw/his
+
+cd $hw
+
+# Compare output files
+vimdiff mine his
