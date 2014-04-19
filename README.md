@@ -12,7 +12,7 @@ in your home directory.
 
 2. Add a path to this script to your profile.
   ````bash
-  'export PATH=$PATH:/home/linux/ieng6/cs12x/cs12xxx/scripts' >> ~/.bash_profile
+  'export PATH=$PATH:/home/solaris/ieng9/cs12x/cs12xxx/scripts' >> ~/.bash_profile
   ````
   If for some reason this gives you an error just open the file in vim and
   past the export command somewhere in the middle.
