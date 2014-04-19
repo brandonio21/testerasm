@@ -2,22 +2,20 @@ CSE 30 tester
 =================
 ######Version **.01** of pa tester for CSE 30.
 
-Download script to your ieng9 account and create a directory called scripts
-in your home directory.
+Create a directory in your home directory called 'scripts' and put the `tester` script in it.
 
 1. Add exacutable permission to the script.
   ````bash
   chmod +x tester
   ````
 
-2. Add a path to this script to your profile.
+2. (optional) Add a path to this script to your profile.
   ````bash
   'export PATH=$PATH:/home/solaris/ieng9/cs30x/cs30xxx/scripts' >> ~/.bash_profile
   ````
-  If for some reason this gives you an error just open the file in vim and
-  paste the export command somewhere in the middle.
+  If for some reason this gives you an error just open ~/.bash_profile in vim and paste the export command somewhere in the middle.
 
-  *"cs12xxx" will need to be changed to your profile id.*
+  *"cs12xxx" will need to be changed to your own profile id.*
 
 3. Then go into your pa# directory folder and run the following command.
   ````bash
