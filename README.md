@@ -22,7 +22,7 @@ Create a directory in your home directory called 'scripts' and put the `tester` 
   tester pa# pa#test filename
   ````
   *filename* is the file with your test cases. I have included a *very* small
-  test case called `tasta` which can get you started.
+  test case called `testa` which can get you started.
 
   You will be asked if you would like to append to an existing test file or
   overwrite the old one. The test file and your will both be run the both
