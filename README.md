@@ -1,4 +1,4 @@
-CSE 30 tester .01
+CSE 30 tester #.01
 =================
 ######Version .01 of hw tester for CSE 30.
 
@@ -12,7 +12,7 @@ in your home directory.
 
 2. Add a path to this script to your profile.
   ````bash
-  'export PATH=$PATH:/home/solaris/ieng9/cs12x/cs12xxx/scripts' >> ~/.bash_profile
+  'export PATH=$PATH:/home/solaris/ieng9/cs30x/cs30xxx/scripts' >> ~/.bash_profile
   ````
   If for some reason this gives you an error just open the file in vim and
   paste the export command somewhere in the middle.
