@@ -1,0 +1,91 @@
+#!/bin/bash
+hw=${PWD##*/}
+parent=${PWD%/*/*} # TODO not sure why I ha to add this opposed to using ~ 
+                   # instead but it works.
+
+writeusage () {
+    echo
+    echo "tester - UCSD CSE30"
+    echo "Makes and tests your program simultaneously with the sample program."
+    echo "The differences in stdout/stderr are shown in a vimdiff."
+    echo
+#echo "Usage: tester [program] [solution program] [test input | --no-input]"
+    echo "Usage: tester [program] [solution program] [filename]"
+    echo
+    echo "Be sure to run this in a \"pa#\" directory."
+    echo
+}
+
+# This checks if the user would like to continue adding to an existing
+# solution file. TODO We may want to make this a command line instruction.
+echo
+echo "Would you like to append to solution files? [y/n] "
+read rmSolfiles
+
+# This is the command to read from terminal --> read rmdatafiles
+
+# If the user doesn't know how to use this
+if [[ "$#" < 3 ]]; then
+    writeusage
+    exit 1
+fi
+
+
+# First arg is the driver
+driver="$1"
+my_prog="./$driver"
+shift
+
+# Second arg is solution driver name
+soldriver="$1"
+sample_prog="$parent/public/$soldriver"
+shift
+
+#Third arg is the text file
+input="$1"
+shift
+
+# Make your file
+# This makes the default target
+make
+
+# Remove and recreates apropriate files
+if [ "${rmSolfiles,,}" != "y" ]; then
+    rm -f mine sol
+fi
+count=0
+OLD_IFS=$IFS  # Save the delimiter
+IFS=$'\n'     # Make the delimiter a newline
+
+# Get lines from file
+for line in $(cat $input)
+do
+    # Reset delimiter 
+    IFS=$OLD_IFS
+
+    let count++
+    echo "TEST: $count\n"
+
+    # Read arguments
+    args=""
+    for num in $line; do
+        args="$args $num"
+    done
+
+    # Create output file taking in stderr & stdout
+    echo "      Attempting to run $my_prog$args ..."
+    $my_prog$args >> mine 2>&1 \
+        && echo "      Running $my_prog$args...\n"
+
+    # Save solution output
+    echo "      Attempting to run $sample_prog $args..."
+    $sample_prog$args >> sol 2>&1 \
+        && echo "      Running $sample_prog$args...\n"
+
+    IFS=$'\n'
+
+done < $input
+
+
+# Compare output files
+vimdiff mine sol
