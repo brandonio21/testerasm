@@ -1,6 +1,6 @@
-CSE 30 tester #.01
+CSE 30 tester
 =================
-######Version .01 of hw tester for CSE 30.
+######Version **.01** of pa tester for CSE 30.
 
 Download script to your ieng9 account and create a directory called scripts
 in your home directory.
