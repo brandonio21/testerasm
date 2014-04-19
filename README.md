@@ -15,7 +15,7 @@ in your home directory.
   'export PATH=$PATH:/home/solaris/ieng9/cs12x/cs12xxx/scripts' >> ~/.bash_profile
   ````
   If for some reason this gives you an error just open the file in vim and
-  past the export command somewhere in the middle.
+  paste the export command somewhere in the middle.
 
   *"cs12xxx" will need to be changed to your profile id.*
 
