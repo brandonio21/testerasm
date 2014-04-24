@@ -53,7 +53,8 @@ make
 if [ "${rmSolfiles,,}" != "y" ]; then
     rm -f mine sol
 fi
-count=0
+count=0	      # Count the number of tests performed
+passedCount=0 # Count the number of tests passed
 OLD_IFS=$IFS  # Save the delimiter
 IFS=$'\n'     # Make the delimiter a newline
 
@@ -82,6 +83,10 @@ do
     $sample_prog$args >> sol 2>&1 \
         && echo "      Running $sample_prog$args...\n"
 
+    if [ "`diff mine sol`" = "" ]; then
+        let passedCount++
+    fi
+
     IFS=$'\n'
 
 done < $input
@@ -89,3 +94,4 @@ done < $input
 
 # Compare output files
 vimdiff mine sol
+echo $passedCount/$count tests passed.
