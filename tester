@@ -93,5 +93,9 @@ done < $input
 
 
 # Compare output files
-vimdiff mine sol
 echo $passedCount/$count tests passed.
+echo "Would you like to see the diff file? [y/n]"
+read continueKey
+if [ "${continueKey}" = "y" ]; then
+vimdiff mine sol
+fi
