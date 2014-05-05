@@ -28,8 +28,20 @@ akhkahf
 0 -1:00:00
 0 10:00:00
 0 00:-1:00
+0 00:00:-1
 1 00:00:00
+1 -1:00:00
+1 10:00:00
+1 00:-1:00
+1 00:00:-1
 -1 00:00:00
+-1 -1:00:00
+-1 10:00:00
+-1 00:-1:00
+-1 00:00:-1
 a 00:00:00
 999999999999999999 00:00:00
 
+Test cases created by brandonio21
+These tests are by no means exhaustive
+Please add your own tests
